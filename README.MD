@@ -1,4 +1,6 @@
-![Top Ten Logo](app/src/main/res/drawable/topten_logo.png) 
+<div align="center">
+  <img src="./app/src/main/res/drawable/topten_logo.png" alt="Top Ten Logo" width="200" />
+</div>
 
 # Top Ten
 Top Ten is a mobile app inspired by the popular board game of the same name. It replaces physical components like cards, chips, and the board with a seamless virtual inventory and assists in calculating winning points. This version is built with modern Jetpack Compose, providing a cleaner and more dynamic user interface.                             
