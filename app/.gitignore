@@ -1,0 +1,33 @@
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iml
+.gradle/
+local.properties
+
+# Build directories
+/build/
+*/build/
+
+# Gradle
+.gradle/
+build/
+
+# APKs and App Bundles
+*.apk
+*.ap_
+*.aab
+
+# Java / Kotlin compiled files
+*.class
+
+# Log files
+*.log
+
+# Android Studio Captures (screenshots, etc.)
+captures/
+
+# Signing keys (do not store these in public repositories)
+*.jks
+
+# Exclude custom test folder with your custom files
+test_folder/

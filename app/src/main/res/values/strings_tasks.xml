@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="task_list">
+        <item><![CDATA["DESCRIBE YOUR IMAGINARY INVENTION FROM <font color='#85CA18'>SOMETHING COMPLETELY USELESS</font> TO <font color='red'>«EVERYONE WANTS TO BUY IT».</font>"]]></item>
+        <item><![CDATA["DESCRIBE YOUR IMAGINARY INVENTION FROM <font color='#85CA18'>SOMETHING COMPLETELY USELESS</font> TO <font color='red'>«EVERYONE WANTS TO BUY IT».</font>"]]></item>
+        <item><![CDATA["DESCRIBE YOUR IMAGINARY INVENTION FROM <font color='#85CA18'>SOMETHING COMPLETELY USELESS</font> TO <font color='red'>«EVERYONE WANTS TO BUY IT».</font>"]]></item>
+        <item><![CDATA["DESCRIBE YOUR IMAGINARY INVENTION FROM <font color='#85CA18'>SOMETHING COMPLETELY USELESS</font> TO <font color='red'>«EVERYONE WANTS TO BUY IT».</font>"]]></item>
+        <!-- Add up to 500 tasks -->
+    </string-array>
+</resources>
