@@ -6,9 +6,18 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
-activityCompose = "1.10.0"
-composeBom = "2025.01.00"
-navigationCompose = "2.8.5"
+activityCompose = "1.10.1"
+composeBom = "2025.03.00"
+navigationCompose = "2.8.9"
+ktorClientOkhttp = "2.2.4"
+material = "1.10.0"
+activity = "1.8.0"
+constraintlayout = "2.1.4"
+coroutines = "1.7.3"
+openaiClient = "3.8.2"
+retrofit = "2.9.0"
+gson = "2.8.8"
+openaiClientBom = "3.8.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,6 +38,20 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 material = { module = "com.google.android.material:material", version = "1.12.0" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktorClientOkhttp" }
+
+# Coroutines
+coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+
+
+# OpenAI Client BOM
+openai-client-bom = { group = "com.aallam.openai", name = "openai-client-bom", version.ref = "openaiClientBom" }
+# OpenAI Client
+openai-client = { group = "com.aallam.openai", name = "openai-client", version.ref = "openaiClient" }
+
+# Retrofit and Gson Converter
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

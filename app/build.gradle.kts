@@ -65,4 +65,19 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.material)
+
+    // Coroutines
+    implementation(libs.coroutines.android)
+
+    // Retrofit and Gson
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+
+    // Import OpenAI API client BOM
+    implementation(platform(libs.openai.client.bom)) // This imports the BOM
+
+    // Define OpenAI Client and Ktor dependencies without versions
+    implementation(libs.openai.client)
+
+    implementation(libs.ktor.client.okhttp)
 }

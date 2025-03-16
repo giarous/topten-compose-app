@@ -15,5 +15,6 @@ data class GameUiState(
     val showGameOverDialog: Boolean = false,
     val showGameWonDialog: Boolean = false,
     val showTaskDialog: Boolean = false,
-    val areNumbersMatchingPlayers: Boolean = false
+    val areNumbersMatchingPlayers: Boolean = false,
+    val currentTask: String = "SELECT AN <font color='#85CA18'> AI-GENERATED TASK</font> OR <font color='red'>ONE FROM ALREADY STORED</font>",
 )

@@ -139,7 +139,7 @@ fun TaskDialog(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ){
-                    DefaultButton(onConfirm, stringResource(R.string.cancel), Modifier.fillMaxWidth(0.5f))
+                    DefaultButton(onConfirm, stringResource(R.string.ok), Modifier.fillMaxWidth(0.5f))
                 }
             }
         }

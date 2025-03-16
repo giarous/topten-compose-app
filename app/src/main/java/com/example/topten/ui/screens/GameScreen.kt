@@ -203,7 +203,7 @@ fun GameScreen(navController: NavHostController, gameViewModel: GameViewModel) {
     if (uiState.showTaskDialog) {
         TaskDialog(
             stringResource(R.string.dialog_task_title),
-            uiState.taskList[uiState.taskCounter],
+            uiState.currentTask,
             onConfirm = {
                 gameViewModel.toggleTaskDialog(false)
             }

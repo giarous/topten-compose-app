@@ -5,9 +5,11 @@ import androidx.lifecycle.ViewModel
 import com.example.topten.R
 import com.example.topten.config.GameConfig
 import com.example.topten.data.allTasksListEnglish
+import com.example.topten.network.singleTaskCall
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 class GameViewModel : ViewModel(){
 
@@ -17,6 +19,16 @@ class GameViewModel : ViewModel(){
     init {
         //loadTasks()
         //loadTasksFromResource()
+    }
+
+    fun fetchTaskFromOpenAi() {
+        singleTaskCall (){ response ->
+            _uiState.update { currentState ->
+                currentState.copy(
+                    currentTask = response
+                )
+            }
+        }
     }
 
     fun dismissDialogs() {
@@ -91,9 +103,17 @@ class GameViewModel : ViewModel(){
         )
     }
 
-    fun changeTask(){
-        val newTaskCounter = (_uiState.value.taskCounter + 1) % _uiState.value.taskList.size
-        _uiState.value = _uiState.value.copy(taskCounter = newTaskCounter)
+    fun changeTask() {
+        val tasks = _uiState.value.taskList
+        if (tasks.isEmpty()) return
+
+        val newTaskCounter = (_uiState.value.taskCounter + 1) % tasks.size
+        _uiState.update { currentState ->
+            currentState.copy(
+                taskCounter = newTaskCounter,
+                currentTask = tasks[newTaskCounter]
+            )
+        }
     }
 
     fun updateChoice(choice: Boolean){

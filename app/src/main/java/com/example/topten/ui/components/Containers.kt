@@ -90,60 +90,57 @@ fun ButtonContainer(
     onButtonClicked: (Int) -> Unit
 ) {
     Column(Modifier.padding(5.dp)) {
-        Row(Modifier.padding(vertical = 5.dp)) {
+        Row(
+            Modifier.padding(vertical = 5.dp),
+            horizontalArrangement = Arrangement.spacedBy(10.dp))
+        {
             ColoredButton(
                 1,
                 buttonState[0],
                 Modifier
-                    .weight(1f)
-                    .padding(horizontal = 5.dp), { onButtonClicked(0) }, BtnColor1
+                    .weight(1f), { onButtonClicked(0) }, BtnColor1
             )
             ColoredButton(2, buttonState[1],
                 Modifier
-                    .weight(1f)
-                    .padding(horizontal = 5.dp), { onButtonClicked(1) }, BtnColor2
+                    .weight(1f), { onButtonClicked(1) }, BtnColor2
             )
             ColoredButton(3, buttonState[2],
                 Modifier
-                    .weight(1f)
-                    .padding(horizontal = 5.dp), { onButtonClicked(2) }, BtnColor3
+                    .weight(1f), { onButtonClicked(2) }, BtnColor3
             )
             ColoredButton(4, buttonState[3],
                 Modifier
-                    .weight(1f)
-                    .padding(horizontal = 5.dp), { onButtonClicked(3) }, BtnColor4
+                    .weight(1f), { onButtonClicked(3) }, BtnColor4
             )
             ColoredButton(5, buttonState[4],
                 Modifier
-                    .weight(1f)
-                    .padding(horizontal = 5.dp), { onButtonClicked(4) }, BtnColor5
+                    .weight(1f), { onButtonClicked(4) }, BtnColor5
             )
         }
-        Row(Modifier.padding(vertical = 5.dp)) {
+
+        Row(
+            Modifier.padding(vertical = 5.dp),
+            horizontalArrangement = Arrangement.spacedBy(10.dp))
+        {
             ColoredButton(6, buttonState[5],
                 Modifier
-                    .weight(1f)
-                    .padding(horizontal = 5.dp), { onButtonClicked(5) }, BtnColor6
+                    .weight(1f), { onButtonClicked(5) }, BtnColor6
             )
             ColoredButton(7, buttonState[6],
                 Modifier
-                    .weight(1f)
-                    .padding(horizontal = 5.dp), { onButtonClicked(6) }, BtnColor7
+                    .weight(1f), { onButtonClicked(6) }, BtnColor7
             )
             ColoredButton(8, buttonState[7],
                 Modifier
-                    .weight(1f)
-                    .padding(horizontal = 5.dp), { onButtonClicked(7) }, BtnColor8
+                    .weight(1f), { onButtonClicked(7) }, BtnColor8
             )
             ColoredButton(9, buttonState[8],
                 Modifier
-                    .weight(1f)
-                    .padding(horizontal = 5.dp), { onButtonClicked(8) }, BtnColor9
+                    .weight(1f), { onButtonClicked(8) }, BtnColor9
             )
             ColoredButton(10, buttonState[9],
                 Modifier
-                    .weight(1f)
-                    .padding(horizontal = 5.dp), { onButtonClicked(9) }, BtnColor10
+                    .weight(1f), { onButtonClicked(9) }, BtnColor10
             )
         }
     }

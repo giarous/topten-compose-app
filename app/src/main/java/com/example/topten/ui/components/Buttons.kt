@@ -45,7 +45,6 @@ fun DefaultButton(
         ),
         contentPadding = PaddingValues(0.dp)
     ) {
-        // Gradient as background
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -98,7 +97,6 @@ fun ColoredButton(
         ),
         enabled = isEnabled
     ) {
-        // Centered Text
         Text(
             text = index.toString(),
             style = TextStyle(

@@ -65,7 +65,7 @@ fun TaskSelectionScreen(navController: NavHostController, gameViewModel: GameVie
         SectionDivider(false, modifier = Modifier.weight(1f))
 
         TaskContainer(
-            taskText = uiState.taskList[uiState.taskCounter]
+            taskText = uiState.currentTask
         )
 
         Spacer(modifier = Modifier.weight(1f))
@@ -87,14 +87,22 @@ fun TaskSelectionScreen(navController: NavHostController, gameViewModel: GameVie
                 contentScale = ContentScale.Fit
             )
 
-            Spacer(modifier = Modifier.width(50.dp))
+            Spacer(modifier = Modifier.width(10.dp))
 
             DefaultButton(
-                buttonText = stringResource(R.string.change_task),
+                buttonText = "App Task",
                 onClick = { gameViewModel.changeTask() },
                 modifier = Modifier
                     .weight(1f)
-                    .padding(horizontal = 20.dp)
+                    .padding(horizontal = 10.dp)
+            )
+
+            DefaultButton(
+                buttonText = "AI Task",
+                onClick = { gameViewModel.fetchTaskFromOpenAi()},
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(horizontal = 10.dp)
             )
         }
 

@@ -31,3 +31,4 @@ captures/
 # Exclude custom test folder with your custom files
 test_folder/
 sampledata/
+**/ApiKeys.kt
