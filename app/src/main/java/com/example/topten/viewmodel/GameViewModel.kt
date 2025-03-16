@@ -1,4 +1,4 @@
-package com.example.topten.ui
+package com.example.topten.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

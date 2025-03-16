@@ -1,4 +1,4 @@
-package com.example.topten
+package com.example.topten.data
 
 data class Player(
     val id: Int,

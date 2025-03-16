@@ -1,4 +1,4 @@
-package com.example.topten.ui
+package com.example.topten.viewmodel
 
 data class GameUiState(
     val taskList: List<String> = emptyList(),

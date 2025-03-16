@@ -1,6 +1,6 @@
 package com.example.topten.network
 
-import com.example.topten.parsePlayerResponses
+import com.example.topten.utils.parsePlayerResponses
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -28,7 +28,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.topten.R
 import com.example.topten.navigation.Routes
-import com.example.topten.ui.GameViewModel
+import com.example.topten.viewmodel.GameViewModel
 import com.example.topten.ui.components.DefaultButton
 import com.example.topten.ui.theme.TopTenTheme
 

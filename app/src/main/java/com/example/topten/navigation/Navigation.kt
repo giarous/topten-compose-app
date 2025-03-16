@@ -9,7 +9,7 @@ import com.example.topten.ui.screens.AllTasksScreen
 import com.example.topten.ui.screens.GameScreen
 import com.example.topten.ui.screens.HomeScreen
 import com.example.topten.ui.screens.TaskSelectionScreen
-import com.example.topten.ui.GameViewModel
+import com.example.topten.viewmodel.GameViewModel
 
 object Routes {
     const val HOME = "home"
