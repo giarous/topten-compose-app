@@ -36,7 +36,6 @@ data class MessageContent(
 
 fun structuredOpenAiCall(fullPrompt: String, callback: (String) -> Unit) {
 
-    // Create the request message list with the user's input
     val messages = listOf(
         Message(role = "user", content = fullPrompt)
     )
@@ -78,9 +77,7 @@ fun simpleOpenAiCall(userMessage: String, callback: (String) -> Unit) {
         Message(role = "user", content = userMessage)
     )
 
-    val request = ChatRequest(
-        messages = messages
-    )
+    val request = ChatRequest(messages = messages)
 
     val call = RetrofitClient.instance.getChatCompletion(request)
     call.enqueue(object : Callback<ChatResponse> {

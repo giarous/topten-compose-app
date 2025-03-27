@@ -29,13 +29,17 @@ val Black = Color(0xFF000000)
 val White = Color(0xFFFCFCFC)
 val Background = Color(0xFF047488)
 val TopTenDark = Color(0xFF334C53)
-val BtnColor1 = Color(0xFF81B72B)
-val BtnColor2 = Color(0xFF9DC123)
-val BtnColor3 = Color(0xFFC6D20E)
-val BtnColor4 = Color(0xFFE9DD17)
-val BtnColor5 = Color(0xFFFBEF1F)
-val BtnColor6 = Color(0xFFFEAE0F)
-val BtnColor7 = Color(0xFFF2960D)
-val BtnColor8 = Color(0xFFEC5F0F)
-val BtnColor9 = Color(0xFFE73D19)
-val BtnColor10 = Color(0xFFDC1416)
+
+val buttonColors = listOf(
+    Color(0xFF81B72B), // BtnColor1
+    Color(0xFF9DC123), // BtnColor2
+    Color(0xFFC6D20E), // BtnColor3
+    Color(0xFFE9DD17), // BtnColor4
+    Color(0xFFFBEF1F), // BtnColor5
+    Color(0xFFFEAE0F), // BtnColor6
+    Color(0xFFF2960D), // BtnColor7
+    Color(0xFFEC5F0F), // BtnColor8
+    Color(0xFFE73D19), // BtnColor9
+    Color(0xFFDC1416), // BtnColor10
+    Color(0xFF03DAC5), // DefaultColor
+)

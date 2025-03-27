@@ -5,9 +5,10 @@
     <string name="start_game">New Game</string>
     <string name="new_game">New Game</string>
     <string name="all_tasks">All Tasks</string>
-    <string name="game_screen_header">Game Screen</string>
-    <string name="task_selection_screen_header">Task Selection</string>
-    <string name="all_tasks_screen_header">All Tasks</string>
+    <string name="game_screen_header">GAME SCREEN</string>
+    <string name="game_ai_screen_header">GAME AI SCREEN</string>
+    <string name="task_selection_screen_header">TASK SELECTION</string>
+    <string name="all_tasks_screen_header">ALL TASKS</string>
     <string name="selected_numbers">Chosen numbers</string>
     <string name="numbers">0</string>
     <string name="round">Round</string>
@@ -24,7 +25,7 @@
     <string name="information_button">Information</string>
     <string name="change_task">Change Task</string>
     <string name="start_round">Start Round</string>
-    <string name="match_cards">Match the number of cards to players</string>
+    <string name="match_cards">Match the number to players</string>
     <string name="task_placeholder">Task goes here</string>
     <string name="show_task">Show Task</string>
     <string name="end_round">End Round</string>

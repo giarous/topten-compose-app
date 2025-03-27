@@ -59,12 +59,9 @@ fun AllTasksScreen(navController: NavHostController, gameViewModel: GameViewMode
 
         TaskContainer(taskText = uiState.taskList[localTaskCounter])
 
-        SectionDivider( modifier = Modifier.weight(1f))
+        SectionDivider(modifier = Modifier.weight(1f))
 
-        TaskContainer(
-            taskText = uiState.taskList[localTaskCounter+1],
-            true
-        )
+        TaskContainer(taskText = uiState.taskList[localTaskCounter + 1], true)
 
         SectionDivider(modifier = Modifier.weight(1f))
 
@@ -78,14 +75,14 @@ fun AllTasksScreen(navController: NavHostController, gameViewModel: GameViewMode
             DefaultButton(
                 buttonText = stringResource(R.string.go_to_home),
                 onClick = {
-                    navController.navigate(Routes.HOME){
+                    navController.navigate(Routes.HOME_SCREEN) {
                         popUpTo(navController.graph.startDestinationId) {
                             inclusive = true
                         }
 
                         launchSingleTop = true
                     }
-                          },
+                },
                 modifier = Modifier
                     .weight(1f)
                     .padding(horizontal = 20.dp)
@@ -94,11 +91,15 @@ fun AllTasksScreen(navController: NavHostController, gameViewModel: GameViewMode
             DefaultButton(
                 buttonText = stringResource(R.string.change_task),
                 onClick = {
-                    if(localTaskCounter < uiState.taskList.size-3){
-                        localTaskCounter+=2
+                    if (localTaskCounter < uiState.taskList.size - 3) {
+                        localTaskCounter += 2
 
-                    }else{
-                        Toast.makeText(context, context.getString(R.string.no_more_tasks), Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(
+                            context,
+                            context.getString(R.string.no_more_tasks),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 },
                 modifier = Modifier

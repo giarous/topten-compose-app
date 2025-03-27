@@ -2,8 +2,6 @@ package com.example.topten.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -21,15 +19,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.topten.R
-import com.example.topten.ui.theme.TopTenTheme
 
 @Composable
 fun CustomSwitch(
     isChecked: Boolean,
-    onCheckedChange: (Boolean) -> Unit){
+    onCheckedChange: (Boolean) -> Unit
+) {
 
     Switch(
         checked = isChecked,
@@ -56,17 +53,16 @@ fun CustomSwitch(
         ),
         modifier = Modifier
             .padding(5.dp)
-
     )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CustomSlider(sliderPosition: Float, onSliderPositionChange: (Float) -> Unit){
+fun CustomSlider(sliderPosition: Float, onSliderPositionChange: (Float) -> Unit) {
 
     Slider(
         value = sliderPosition,
-        onValueChange = {onSliderPositionChange(it)},
+        onValueChange = { onSliderPositionChange(it) },
         valueRange = 1f..10f,
         steps = 9,
         modifier = Modifier
@@ -99,24 +95,6 @@ fun CustomSlider(sliderPosition: Float, onSliderPositionChange: (Float) -> Unit)
             )
         }
     )
-
 }
 
-@Preview
-@Composable
-fun CustomPreview(){
-    TopTenTheme {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(.8f)
-                .padding(24.dp)
-        ){
-            TaskDialog(title = "This is the title:",
-                message = "DESCRIBE YOUR IMAGINARY INVENTION FROM <font color='#85CA18'> SOMETHING COMPLETELY USELESS</font> TO <font color='red'>«EVERYONE WANTS TO BUY IT».</font>",
-                onConfirm = {  },
-            )
-        }
-    }
-}
 

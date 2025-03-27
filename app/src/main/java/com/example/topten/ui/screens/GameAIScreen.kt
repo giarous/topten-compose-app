@@ -15,33 +15,40 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.topten.R
 import com.example.topten.navigation.Routes
-import com.example.topten.viewmodel.GameViewModel
-import com.example.topten.ui.components.ButtonContainer
+import com.example.topten.ui.components.ButtonContainerMini
 import com.example.topten.ui.components.CustomDialog
 import com.example.topten.ui.components.DefaultButton
 import com.example.topten.ui.components.FooterImage
 import com.example.topten.ui.components.Header
+import com.example.topten.ui.components.PlayerCardContainer
 import com.example.topten.ui.components.ScoreBoardContainer
 import com.example.topten.ui.components.TaskDialog
 import com.example.topten.ui.theme.TopTenDark
 import com.example.topten.ui.theme.TopTenTheme
+import com.example.topten.viewmodel.GameViewModel
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun GameScreen(navController: NavHostController, gameViewModel: GameViewModel) {
+fun GameAiScreen(navController: NavHostController, gameViewModel: GameViewModel) {
 
     val uiState by gameViewModel.uiState.collectAsState()
+    var showPlayerDialog by remember { mutableIntStateOf(10) }
 
     Column(
         modifier = Modifier
@@ -53,7 +60,7 @@ fun GameScreen(navController: NavHostController, gameViewModel: GameViewModel) {
         Header(
             R.drawable.star_icon_image,
             R.drawable.star_icon_image,
-            stringResource(R.string.game_screen_header)
+            stringResource(R.string.game_ai_screen_header)
         )
 
         HorizontalDivider(
@@ -78,9 +85,15 @@ fun GameScreen(navController: NavHostController, gameViewModel: GameViewModel) {
 
         Spacer(modifier = Modifier.weight(1f))
 
-        ButtonContainer(uiState.buttonStates, onButtonClicked = { index ->
-            gameViewModel.onButtonClicked(index)
-        })
+        PlayerCardContainer(
+            playerList = uiState.players,
+            onSelectClick = { index ->
+                gameViewModel.onPlayerSelection(index)
+            },
+            onInfoClicked = { playerIndex ->
+                showPlayerDialog = playerIndex
+            }
+        )
 
         Spacer(modifier = Modifier.weight(1f))
 
@@ -99,16 +112,16 @@ fun GameScreen(navController: NavHostController, gameViewModel: GameViewModel) {
                 .background(MaterialTheme.colorScheme.background),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = stringResource(R.string.selected_numbers),
-                color = Color.White,
-                modifier = Modifier
-            )
+            ButtonContainerMini(uiState.buttonStates)
 
             Text(
-                text = uiState.selectedNumbers,
+                text = "SELECTED NUMBERS: " + uiState.selectedNumbers,
                 color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 12.sp,
                 modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 10.dp)
             )
         }
 
@@ -176,6 +189,8 @@ fun GameScreen(navController: NavHostController, gameViewModel: GameViewModel) {
 
     }
 
+
+
     if (uiState.showEndRoundDialog) {
         CustomDialog(
             stringResource(R.string.dialog_round_end_title),
@@ -207,6 +222,14 @@ fun GameScreen(navController: NavHostController, gameViewModel: GameViewModel) {
             onConfirm = {
                 gameViewModel.toggleTaskDialog(false)
             }
+        )
+    }
+
+    if (showPlayerDialog != 10) {
+        TaskDialog(
+            uiState.players[showPlayerDialog].name,
+            uiState.players[showPlayerDialog].response,
+            onConfirm = { showPlayerDialog = 10 }
         )
     }
 
@@ -257,10 +280,10 @@ fun GameScreen(navController: NavHostController, gameViewModel: GameViewModel) {
 
 @Preview
 @Composable
-fun GameLayoutPreview() {
+fun GameAILayoutPreview() {
     val mockViewModel: GameViewModel = viewModel()
     mockViewModel.updateButtonStates()
     TopTenTheme {
-        GameScreen(navController = rememberNavController(), mockViewModel)
+        GameAiScreen(navController = rememberNavController(), mockViewModel)
     }
 }

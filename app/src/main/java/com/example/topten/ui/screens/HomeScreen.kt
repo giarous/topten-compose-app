@@ -67,7 +67,7 @@ fun HomeScreen(navController: NavHostController, gameViewModel: GameViewModel) {
 
         DefaultButton(
             onClick = {
-                navController.navigate(Routes.ALL_TASKS)
+                navController.navigate(Routes.ALL_TASKS_SCREEN)
                 gameViewModel.loadTasks()
                       },
             buttonText = stringResource(R.string.all_tasks),

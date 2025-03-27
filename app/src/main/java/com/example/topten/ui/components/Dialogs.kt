@@ -38,7 +38,8 @@ fun CustomDialog(
     customText: String,
     confirmText: String,
     dismissText: String,
-    onConfirm: () -> Unit, onDismiss: () -> Unit){
+    onConfirm: () -> Unit, onDismiss: () -> Unit
+) {
     AlertDialog(
         onDismissRequest = onDismiss,
         modifier = Modifier
@@ -97,7 +98,7 @@ fun TaskDialog(
     title: String,
     message: String,
     onConfirm: () -> Unit
-){
+) {
     BasicAlertDialog(
         onDismissRequest = onConfirm,
         modifier = Modifier
@@ -113,7 +114,7 @@ fun TaskDialog(
             color = colorResource(R.color.background),
             shape = RoundedCornerShape(12.dp)
 
-        ){
+        ) {
             Column(
                 modifier = Modifier.padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(24.dp)
@@ -122,6 +123,7 @@ fun TaskDialog(
                     text = title,
                     Modifier.fillMaxWidth(),
                     fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
                     color = White
                 )
@@ -129,7 +131,7 @@ fun TaskDialog(
                     text = AnnotatedString.fromHtml(
                         message
                     ),
-                    fontSize = 16.sp,
+                    fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Start,
                     color = White
@@ -138,8 +140,12 @@ fun TaskDialog(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
-                ){
-                    DefaultButton(onConfirm, stringResource(R.string.ok), Modifier.fillMaxWidth(0.5f))
+                ) {
+                    DefaultButton(
+                        onConfirm,
+                        stringResource(R.string.ok),
+                        Modifier.fillMaxWidth(0.5f)
+                    )
                 }
             }
         }

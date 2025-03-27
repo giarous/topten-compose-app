@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -33,6 +32,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.topten.R
 import com.example.topten.navigation.Routes
+import com.example.topten.network.PromptTemplates
+import com.example.topten.network.structuredOpenAiCall
 import com.example.topten.viewmodel.GameViewModel
 import com.example.topten.ui.components.CustomSlider
 import com.example.topten.ui.components.CustomSwitch
@@ -43,6 +44,7 @@ import com.example.topten.ui.components.SectionDivider
 import com.example.topten.ui.components.TaskContainer
 import com.example.topten.ui.theme.TopTenTheme
 import com.example.topten.ui.theme.White
+import com.example.topten.utils.parsePlayerResponses
 
 @Composable
 fun TaskSelectionScreen(navController: NavHostController, gameViewModel: GameViewModel) {
@@ -51,7 +53,7 @@ fun TaskSelectionScreen(navController: NavHostController, gameViewModel: GameVie
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .background(MaterialTheme.colorScheme.background),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -64,9 +66,7 @@ fun TaskSelectionScreen(navController: NavHostController, gameViewModel: GameVie
 
         SectionDivider(false, modifier = Modifier.weight(1f))
 
-        TaskContainer(
-            taskText = uiState.currentTask
-        )
+        TaskContainer(taskText = uiState.currentTask)
 
         Spacer(modifier = Modifier.weight(1f))
 
@@ -99,14 +99,14 @@ fun TaskSelectionScreen(navController: NavHostController, gameViewModel: GameVie
 
             DefaultButton(
                 buttonText = "AI Task",
-                onClick = { gameViewModel.fetchTaskFromOpenAi()},
+                onClick = { gameViewModel.fetchTaskFromOpenAi() },
                 modifier = Modifier
                     .weight(1f)
                     .padding(horizontal = 10.dp)
             )
         }
 
-        SectionDivider( modifier = Modifier.weight(1f))
+        SectionDivider(modifier = Modifier.weight(1f))
 
         Row(
             modifier = Modifier
@@ -128,12 +128,12 @@ fun TaskSelectionScreen(navController: NavHostController, gameViewModel: GameVie
 
             CustomSlider(
                 uiState.numberOfPlayers,
-                onSliderPositionChange = {
-                    newPosition -> gameViewModel.updateNumberOfPlayers(newPosition)//sliderPosition = newPosition
-                    })
+                onSliderPositionChange = { newPosition ->
+                    gameViewModel.updateNumberOfPlayers(newPosition)//sliderPosition = newPosition
+                })
 
             Spacer(modifier = Modifier.width(16.dp))
-            
+
             Text(
                 text = uiState.numberOfPlayers.toInt().toString(),
                 color = White,
@@ -157,16 +157,44 @@ fun TaskSelectionScreen(navController: NavHostController, gameViewModel: GameVie
             Text(
                 text = stringResource(R.string.match_cards),
                 color = Color.White,
-                modifier = Modifier.align(Alignment.CenterVertically).padding(start = 8.dp)
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
+                    .padding(start = 8.dp)
             )
 
             Spacer(modifier = Modifier.width(16.dp))
 
             CustomSwitch(
                 uiState.areNumbersMatchingPlayers,
-                onCheckedChange = {
-                newState -> gameViewModel.updateChoice(newState)
-            })
+                onCheckedChange = { newState ->
+                    gameViewModel.updateChoice(newState)
+                })
+
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp, vertical = 5.dp)
+                .background(Color.Transparent),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = "Play against AI",
+                color = Color.White,
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
+                    .padding(start = 8.dp)
+            )
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            CustomSwitch(
+                uiState.playAgainstAI,
+                onCheckedChange = { newState ->
+                    gameViewModel.updateOpponent(newState)
+                })
 
         }
 
@@ -174,17 +202,15 @@ fun TaskSelectionScreen(navController: NavHostController, gameViewModel: GameVie
 
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.End),
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
-
             verticalAlignment = Alignment.CenterVertically
         ) {
 
             DefaultButton(
                 buttonText = stringResource(R.string.go_to_home),
                 onClick = {
-                    navController.navigate(Routes.HOME){
+                    navController.navigate(Routes.HOME_SCREEN) {
                         popUpTo(navController.graph.startDestinationId) {
                             inclusive = true
                         }
@@ -199,13 +225,31 @@ fun TaskSelectionScreen(navController: NavHostController, gameViewModel: GameVie
 
             DefaultButton(
                 buttonText = stringResource(R.string.start_round),
-                onClick = { navController.navigate(Routes.GAME_SCREEN){
-                    popUpTo(navController.graph.startDestinationId) {
-                        inclusive = true
+                onClick = {
+
+                    if (uiState.playAgainstAI) {
+                        structuredOpenAiCall(PromptTemplates.getFormattedPrompt(uiState.currentTask)) { response ->
+                            val allResponses = parsePlayerResponses(response) ?: emptyMap()
+                            gameViewModel.updatePlayers(allResponses)
+                        }
+
+                        navController.navigate(Routes.GAME_AI_SCREEN) {
+                            popUpTo(navController.graph.startDestinationId) {
+                                inclusive = true
+                            }
+                            launchSingleTop = true
+                        }
+
+                    } else {
+                        navController.navigate(Routes.GAME_SCREEN) {
+                            popUpTo(navController.graph.startDestinationId) {
+                                inclusive = true
+                            }
+                            launchSingleTop = true
+                        }
                     }
 
-                    launchSingleTop = true
-                }},
+                },
                 modifier = Modifier
                     .weight(1f)
                     .padding(horizontal = 20.dp)
@@ -223,9 +267,9 @@ fun TaskSelectionScreen(navController: NavHostController, gameViewModel: GameVie
 @Preview(showBackground = true, device = Devices.PIXEL_4)
 @Composable
 fun TaskSelectionLayoutPreview() {
-        TopTenTheme {
-            val mockViewModel: GameViewModel = viewModel()
-            mockViewModel.loadTasks()
-            TaskSelectionScreen(navController = rememberNavController(), mockViewModel)
-        }
+    TopTenTheme {
+        val mockViewModel: GameViewModel = viewModel()
+        mockViewModel.loadTasks()
+        TaskSelectionScreen(navController = rememberNavController(), mockViewModel)
+    }
 }

@@ -14,18 +14,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.topten.R
+import com.example.topten.ui.theme.Teal200
 import com.example.topten.ui.theme.TopTenDark
 
 @Composable
-fun Header(startIconRes: Int, endIconRes: Int, headerText: String){
+fun Header(startIconRes: Int, endIconRes: Int, headerText: String) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -47,6 +51,13 @@ fun Header(startIconRes: Int, endIconRes: Int, headerText: String){
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
+            style = TextStyle(
+                shadow = Shadow(
+                    color = Teal200,
+                    offset = Offset(0f, 0f),
+                    blurRadius = 10f
+                ),
+            ),
             modifier = Modifier
                 .weight(1f)
                 .padding(horizontal = 8.dp),
@@ -75,7 +86,11 @@ fun FooterImage() {
 }
 
 @Composable
-fun SectionDivider(includeSpacerBefore: Boolean = true, includeSpacerAfter: Boolean = true, modifier: Modifier = Modifier) {
+fun SectionDivider(
+    includeSpacerBefore: Boolean = true,
+    includeSpacerAfter: Boolean = true,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally

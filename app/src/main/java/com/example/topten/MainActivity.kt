@@ -17,9 +17,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyApp()
         }
-
     }
-
 }
 
 @Composable
