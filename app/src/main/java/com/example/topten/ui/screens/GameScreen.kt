@@ -53,7 +53,7 @@ fun GameScreen(navController: NavHostController, gameViewModel: GameViewModel) {
         Header(
             R.drawable.star_icon_image,
             R.drawable.star_icon_image,
-            stringResource(R.string.game_screen_header)
+            "GAME: ROUND " + uiState.currentRound.toString()
         )
 
         HorizontalDivider(

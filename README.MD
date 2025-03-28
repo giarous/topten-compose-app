@@ -37,7 +37,7 @@ Top Ten is a tribute mobile app based on the board game "TOP TEN." It offers an 
 | Top Ten Dark | ![#FF334C53](https://via.placeholder.com/10/8892b0?text=+) `#FF334C53` |
 
 ## Screenshots
-[![Top Ten Demo](https://i.postimg.cc/23pGzkKJ/Phone-Frame-Transparent.png)](https://postimg.cc/m1wCjsRN)
+[![Top-Ten-Compose-App.png](https://i.postimg.cc/Bvk008r1/Top-Ten-Compose-App.png)](https://postimg.cc/f3cF7bTw)
 
 ## Disclaimer
 This app is a tribute to the original board game "TOP TEN" and is not affiliated with or endorsed by Interlude or the creators of TOP TEN. All associated copyrights and trademarks belong to their respective owners. For the full set of tasks and the physical version, please visit [their official website](https://www.cocktailgames.com/en/game/top-ten/).
